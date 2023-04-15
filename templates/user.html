@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{usuario.username}}{% endblock %}
+
+{% block conteudo %}
+
+<div>
+    {% include "header.html" %}
+    <br>
+</div>
+
+<div>
+    {% if messages %}
+        {%for message in messages%}
+            <p>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+
+    <div>
+        <h1>Nome: {{usuario.first_name}} {{usuario.last_name}}</h1>
+        <h2>Usuario: {{usuario.username}}</h2>
+    </div>
+
+    <h3>Posts do usuario:</h3>
+
+    {% for i in posts %}
+        <div class="card my-2">
+            <div class="card-header">
+                <h2>{{ i.titulo }}</h2>
+            </div>
+            <div class="card-body">
+                <p>{{i.conteudo}}</p>
+                <a href="/post/{{i.id}}">Acessar post</a>
+            </div>
+            <div class="card-footer">
+                <p>{{i.user.username}}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{post.titulo}}{% endblock %}
+
+{% block conteudo %}
+
+<a href="{% url 'home' %}">Home</a>
+
+{% if user.is_authenticated %}
+{% if post.user == user or user.is_staff %}
+<div class="d-flex">
+    <a href="{% url 'editar_post' %}?id={{post.id}}" class="btn btn-primary">Editar Post</a>
+    <a href="{% url 'deletar_post' %}?id={{post.id}}" class="btn btn-danger">Deletar Post</a>
+</div>
+{%endif%}
+{%endif%}
+
+
+<div class="card">
+    {% if messages %}
+        {%for message in messages%}
+            <p>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+
+    <div class="card my-2">
+        <div class="card-header">
+            <h2>{{ post.titulo }}</h2>
+        </div>
+        <div class="card-body">
+            <p>{{post.conteudo}}</p>
+            <a href="/post/{{i.id}}">Acessar post</a>
+        </div>
+        <div class="card-footer">
+            <p>{{post.user.username}}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

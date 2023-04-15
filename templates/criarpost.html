@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block titulo %}Home{% endblock %}
+
+{% block conteudo %}
+<div>
+    {% if messages %}
+        {%for message in messages%}
+            <p>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form action="/criar/post/" method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+        <div class="form-group my-2">
+            <label for="titulo">Titulo:</label>
+            <input type="text" name="titulo"  class="form-control">
+        </div>
+
+        <div class="form-group my-2">
+            <label for="conteudo">Titulo:</label>
+            <textarea name="conteudo" id="conteudo" cols="30" rows="10" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group my-2">
+            <label for="imagem">Imagem:</label>
+            <input type="file" name="imagem" id="imagem" class="form-control">
+        </div>
+        <br>
+        <button class="btn btn-success">Enviar</button>
+    </form>
+</div>
+
+{% endblock %}

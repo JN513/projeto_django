@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block titulo %}Home{% endblock %}
+
+{% block conteudo %}
+<div>
+    {% if messages %}
+        {%for message in messages%}
+            <p>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form action="/editar/post/" method="post">
+        {% csrf_token %}
+        <input type="number" value="{{post.id}}" name="id" hidden>
+        <div class="form-group my-2">
+            <label for="titulo">Titulo:</label>
+            <input type="text" name="titulo"  class="form-control" value="{{post.titulo}}">
+        </div>
+
+        <div class="form-group my-2">
+            <label for="conteudo">Titulo:</label>
+            <textarea name="conteudo" id="conteudo" cols="30" rows="10" class="form-control">{{post.conteudo}}</textarea>
+        </div>
+        <br>
+        <button class="btn btn-success">Editar</button>
+    </form>
+</div>
+
+{% endblock %}

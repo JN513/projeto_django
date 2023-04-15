@@ -16,7 +16,33 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
+from core.views import (
+    home,
+    post,
+    criar_post,
+    login,
+    logout,
+    cadastro,
+    editar_post,
+    deletar_post,
+    user,
+)
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-]
+urlpatterns = (
+        [
+        path("admin/", admin.site.urls, name="admin"),
+        path("", home, name="home"),
+        path("post/<int:id>/", post, name="post"),
+        path("criar/post/", criar_post, name="criar_post"),
+        path("login/", login, name="login"),
+        path("logout/", logout, name="logout"),
+        path("cadastro/", cadastro, name="cadastro"),
+        path("editar/post/", editar_post, name="editar_post"),
+        path("deletar/post/", deletar_post, name="deletar_post"),
+        path("user/<int:id>/", user, name="user")
+    ]
+    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+)

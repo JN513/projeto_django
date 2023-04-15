@@ -5,8 +5,10 @@ from django.contrib.auth.models import User
 
 # titulo, conteudo, datetime
 
+
 class PostModel(models.Model):
     titulo = models.CharField(max_length=100)
     conteudo = models.TextField()
     datetime = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    foto = models.FileField(blank=True)
