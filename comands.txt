@@ -1,0 +1,4 @@
+python
+pip --version
+pip install django 
+django-admin startproject projeto
